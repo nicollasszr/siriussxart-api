@@ -1,5 +1,5 @@
 import sharp from 'sharp'
-import { supabase } from './index.js'
+import { supabase } from '../index.js'
 
 //========================================================
 // PRODUTOS

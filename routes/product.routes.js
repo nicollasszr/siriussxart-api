@@ -57,7 +57,7 @@ router.get('/images/:id', async (req, res) => {
 
 // ---ADMIN---
 
-router.post('/admin/create', authenticate, authorizeAdmin, async (req, res) => {
+router.post('/admin/create', authorize, authorizeAdmin, async (req, res) => {
     try {
 
         const { name, description, price } = req.body;
@@ -71,7 +71,7 @@ router.post('/admin/create', authenticate, authorizeAdmin, async (req, res) => {
     }
 });
 
-router.post('/admin/upload-image', authenticate, authorizeAdmin, async (req, res) => {
+router.post('/admin/upload-image', authorize, authorizeAdmin, async (req, res) => {
     try {
 
         const { product_id, image_buffer } = req.body;
@@ -85,7 +85,7 @@ router.post('/admin/upload-image', authenticate, authorizeAdmin, async (req, res
     }
 });
 
-router.delete('/admin/delete-image', authenticate, authorizeAdmin, async (req, res) => {
+router.delete('/admin/delete-image', authorize, authorizeAdmin, async (req, res) => {
     try {
 
         const { product_id, image_id } = req.body;
@@ -100,7 +100,7 @@ router.delete('/admin/delete-image', authenticate, authorizeAdmin, async (req, r
 });
 
 // Gerenciamento de Tags
-router.post('/admin/tag', authenticate, authorizeAdmin, async (req, res) => {
+router.post('/admin/tag', authorize, authorizeAdmin, async (req, res) => {
     try {
 
         const { name, type } = req.body;
@@ -114,7 +114,7 @@ router.post('/admin/tag', authenticate, authorizeAdmin, async (req, res) => {
     }
 });
 
-router.put('/admin/tag/:id', authenticate, authorizeAdmin, async (req, res) => {
+router.put('/admin/tag/:id', authorize, authorizeAdmin, async (req, res) => {
     try {
 
         const data = await productFn.update_tag(req.params.id, req.body);
@@ -126,7 +126,7 @@ router.put('/admin/tag/:id', authenticate, authorizeAdmin, async (req, res) => {
     }
 });
 
-router.delete('/admin/tag/:id', authenticate, authorizeAdmin, async (req, res) => {
+router.delete('/admin/tag/:id', authorize, authorizeAdmin, async (req, res) => {
     try {
 
         await productFn.delete_tag(req.params.id);
@@ -139,7 +139,7 @@ router.delete('/admin/tag/:id', authenticate, authorizeAdmin, async (req, res) =
 });
 
 // Vincular/Desvincular Tags
-router.post('/admin/product-tag', authenticate, authorizeAdmin, async (req, res) => {
+router.post('/admin/product-tag', authorize, authorizeAdmin, async (req, res) => {
     try {
 
         const { product_id, tag_id } = req.body;
@@ -153,7 +153,7 @@ router.post('/admin/product-tag', authenticate, authorizeAdmin, async (req, res)
     }
 });
 
-router.delete('/admin/product-tag', authenticate, authorizeAdmin, async (req, res) => {
+router.delete('/admin/product-tag', authorize, authorizeAdmin, async (req, res) => {
     try {
 
         const { product_id, tag_id } = req.body;
